@@ -233,16 +233,43 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                 + "WHERE (pi.identifier like '%"
                 + nameOrIdentifier
                 + "%' ";
-        for (String s : searchSplit) {
+        //we should avoid alot of possible computations and simulations
+        //thus one name could be any name, two names must be the first and second name, and 3 names must be the
+        //first , second and last name in that order
+        if(searchSplit.length==1){
+            for (String s : searchSplit) {
+                hql += "OR pn.given_name like '%"
+                        + s
+                        + "%' "
+                        + "OR pn.middle_name like '%"
+                        + s
+                        + "%' "
+                        + "OR pn.family_name like '%"
+                        + s + "%'";
+            }
+        }else if(searchSplit.length==2){
+            //assumption is that we are searching by first and second name
             hql += "OR pn.given_name like '%"
-                    + s
+                    + searchSplit[0]
                     + "%' "
                     + "OR pn.middle_name like '%"
-                    + s
+                    +searchSplit[1]
                     + "%' "
-                    + "OR pn.family_name like '%"
-                    + s + "%'";
+//                    + "OR pn.family_name like '%"
+//                    + s + "%'"
+            ;
+
+        }else if(searchSplit.length==3){
+            hql += "OR pn.given_name like '%"
+                    + searchSplit[0]
+                    + "%' "
+                    + "AND pn.middle_name like '%"
+                    + searchSplit[1]
+                    + "%' "
+                    + "AND pn.family_name like '%"
+                    + searchSplit[2] + "%'";
         }
+
         hql+=") ";
 
 
