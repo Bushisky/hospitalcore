@@ -236,7 +236,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
         //we should avoid alot of possible computations and simulations
         //thus one name could be any name, two names must be the first and second name, and 3 names must be the
         //first , second and last name in that order
-        if(searchSplit.length==1){
+        if (searchSplit.length == 1) {
             for (String s : searchSplit) {
                 hql += "OR pn.given_name like '%"
                         + s
@@ -245,21 +245,20 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                         + s
                         + "%' "
                         + "OR pn.family_name like '%"
-                        + s + "%'";
+                        + s + "%' ";
             }
-        }else if(searchSplit.length==2){
-            //assumption is that we are searching by first and second name
+        } else if (searchSplit.length == 2) {
+            //assumption is that we are searching by first AND (second name OR last name)
             hql += "OR pn.given_name like '%"
                     + searchSplit[0]
                     + "%' "
-                    + "OR pn.middle_name like '%"
-                    +searchSplit[1]
+                    + "AND (pn.middle_name like '%"
+                    + searchSplit[1]
                     + "%' "
-//                    + "OR pn.family_name like '%"
-//                    + s + "%'"
-            ;
+                    + "OR pn.family_name like '%"
+                    + searchSplit[1] + "%') ";
 
-        }else if(searchSplit.length==3){
+        } else if (searchSplit.length == 3) {
             hql += "OR pn.given_name like '%"
                     + searchSplit[0]
                     + "%' "
@@ -270,7 +269,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                     + searchSplit[2] + "%'";
         }
 
-        hql+=") ";
+        hql += ") ";
 
 
         if (StringUtils.isNotBlank(gender)) {
