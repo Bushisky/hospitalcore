@@ -821,4 +821,18 @@
 				
 		</sql>
 	</diff>	
+	 <diff>
+		<version>6.1</version>
+		<author>Ambika Tripathi</author>
+		<date>Feb 29, 2016</date>
+		<description>
+			Add new table for role relationship
+		</description>
+		<sql>
+			   CREATE TABLE IF NOT EXISTS inventory_store_role_relation (id integer not null auto_increment,inventory_store_id integer not null, inventory_store_role varchar(50) not null, primary key (id));
+           
+		
+		</sql>
+	</diff>	
+	
 </sqldiff>

@@ -165,6 +165,7 @@
 		Examination.hbm.xml
 		Question.hbm.xml
 		Answer.hbm.xml
+		InventoryStoreRoleRelation.hbm.xml
     </mappingFiles>
 </module>
 
