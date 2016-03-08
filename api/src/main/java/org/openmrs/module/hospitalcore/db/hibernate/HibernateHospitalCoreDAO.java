@@ -272,7 +272,6 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
 
         hql += ") ";
 
-
         if (StringUtils.isNotBlank(gender)) {
             hql += " AND ps.gender = '" + gender + "' ";
         }
@@ -310,7 +309,6 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
             hql += "AND (patPhoneNumber.name LIKE '%Phone Number%' " + "AND paPhoneNumber.value = '" + phoneNumber + "') ";
         }
 
-
         //process patient file number
         if (StringUtils.isNotBlank(fileNumber)) {
             hql += "AND (patFileNumber.name LIKE '%File Number%' " + "AND paFileNumber.value = '" + fileNumber + "') ";
@@ -342,7 +340,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                     patient.setGender((String) obss[5]);
                     patient.setBirthdate((Date) obss[6]);
                     //set the death status
-                    System.out.println("Dead: "+obss[7]);
+                    System.out.println("Dead: " + obss[7]);
                     if (obss[7] != null) {
                         if (obss[7].toString().equals("1")) {
                             patient.setDead(true);
@@ -350,9 +348,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                             patient.setDead(false);
                         }
                     }
-
                     //set the patient admitted or not
-                    System.out.println("Admitted: "+obss[8]);
                     if (obss[8] != null) {
                         if (obss[8].toString().equals("1")) {
                             patient.setVoided(true);
@@ -360,12 +356,9 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                             patient.setVoided(false);
                         }
                     }
-
                     patients.add(patient);
                 }
-
             }
-
         return patients;
     }
 
