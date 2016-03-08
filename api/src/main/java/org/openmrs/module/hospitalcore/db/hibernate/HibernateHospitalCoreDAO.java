@@ -214,12 +214,13 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
         String[] searchSplit = nameOrIdentifier.split("\\s+");
 
 //        update on the patient search functionality - enhancing the search speed - Issue#reg10
-        String hql = "SELECT DISTINCT p.patient_id,pi.identifier,pn.given_name ,pn.middle_name ,pn.family_name ,ps.gender,ps.birthdate ,EXTRACT(YEAR FROM (FROM_DAYS(DATEDIFF(NOW(),ps.birthdate)))) age,pn.person_name_id FROM patient p "
+        String hql = "SELECT DISTINCT p.patient_id,pi.identifier,pn.given_name ,pn.middle_name ,pn.family_name ,ps.gender,ps.birthdate,pse.dead,pse.admitted, pse.person_name_id ,EXTRACT(YEAR FROM (FROM_DAYS(DATEDIFF(NOW(),ps.birthdate)))) age,pn.person_name_id FROM patient p "
                 + "INNER JOIN person ps ON p.patient_id = ps.person_id "
                 + "INNER JOIN patient_identifier pi ON p.patient_id = pi.patient_id "
                 + "INNER JOIN person_name pn ON p.patient_id = pn.person_id "
                 + "INNER JOIN person_attribute pa ON p.patient_id= pa.person_id "
                 + "INNER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id "
+                + "INNER JOIN patient_search pse ON p.patient_id = pse.patient_id "
                 + "INNER JOIN encounter en ON p.patient_id = en.patient_id "
                 + "INNER JOIN encounter e ON e.patient_id = p.patient_id "
                 + "INNER JOIN person_attribute paMaritalStatus ON p.patient_id= paMaritalStatus.person_id "
@@ -236,7 +237,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
         //we should avoid alot of possible computations and simulations
         //thus one name could be any name, two names must be the first and second name, and 3 names must be the
         //first , second and last name in that order
-        if(searchSplit.length==1){
+        if (searchSplit.length == 1) {
             for (String s : searchSplit) {
                 hql += "OR pn.given_name like '%"
                         + s
@@ -245,21 +246,20 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                         + s
                         + "%' "
                         + "OR pn.family_name like '%"
-                        + s + "%'";
+                        + s + "%' ";
             }
-        }else if(searchSplit.length==2){
-            //assumption is that we are searching by first and second name
+        } else if (searchSplit.length == 2) {
+            //assumption is that we are searching by first AND (second name OR last name)
             hql += "OR pn.given_name like '%"
                     + searchSplit[0]
                     + "%' "
-                    + "OR pn.middle_name like '%"
-                    +searchSplit[1]
+                    + "AND (pn.middle_name like '%"
+                    + searchSplit[1]
                     + "%' "
-//                    + "OR pn.family_name like '%"
-//                    + s + "%'"
-            ;
+                    + "OR pn.family_name like '%"
+                    + searchSplit[1] + "%') ";
 
-        }else if(searchSplit.length==3){
+        } else if (searchSplit.length == 3) {
             hql += "OR pn.given_name like '%"
                     + searchSplit[0]
                     + "%' "
@@ -270,7 +270,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                     + searchSplit[2] + "%'";
         }
 
-        hql+=") ";
+        hql += ") ";
 
 
         if (StringUtils.isNotBlank(gender)) {
@@ -324,7 +324,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                 Object[] obss = (Object[]) obj;
                 if (obss != null && obss.length > 0) {
                     Person person = new Person((Integer) obss[0]);
-                    PersonName personName = new PersonName((Integer) obss[8]);
+                    PersonName personName = new PersonName((Integer) obss[9]);
                     personName.setGivenName((String) obss[2]);
                     personName.setMiddleName((String) obss[3]);
                     personName.setFamilyName((String) obss[4]);
@@ -341,6 +341,26 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                     patient.setIdentifiers(identifier);
                     patient.setGender((String) obss[5]);
                     patient.setBirthdate((Date) obss[6]);
+                    //set the death status
+                    System.out.println("Dead: "+obss[7]);
+                    if (obss[7] != null) {
+                        if (obss[7].toString().equals("1")) {
+                            patient.setDead(true);
+                        } else if (obss[7].toString().equals("0")) {
+                            patient.setDead(false);
+                        }
+                    }
+
+                    //set the patient admitted or not
+                    System.out.println("Admitted: "+obss[8]);
+                    if (obss[8] != null) {
+                        if (obss[8].toString().equals("1")) {
+                            patient.setVoided(true);
+                        } else if (obss[8].toString().equals("0")) {
+                            patient.setVoided(false);
+                        }
+                    }
+
                     patients.add(patient);
                 }
 
@@ -483,7 +503,6 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
     }
 
     /**
-     * @see org.openmrs.module.hospitalcore.db.HospitalCoreDAO#getLastVisitTime(int)
      */
     public java.util.Date getLastVisitTime(Patient patientID) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Encounter.class);
