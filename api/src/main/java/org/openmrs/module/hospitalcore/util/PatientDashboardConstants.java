@@ -51,5 +51,13 @@ public class PatientDashboardConstants {
 	public static String PROPERTY_TRIAGE_ENCOUTNER_TYPE = MODULE_ID + ".triageEncounterType";
 	public static String PROPERTY_LAB_ENCOUTNER_TYPE = MODULE_ID + ".labEncounterType";
 	public static String PROPERTY_INIT_CONCEPT = MODULE_ID + ".initNeededConcept";
+	//signs
+    public static  String PROPERTY_SIGNS_CONCEPT = MODULE_ID +".signsConcept";
+    //differential diagnosis
+    public static String PROPERTY_DIFFERENTIAL_DIAGNOSIS= MODULE_ID +".differentialDiagnosis";
+    //Working diagnosis
+    public static String PROPERTY_WORKING_DIAGNOSIS= MODULE_ID +".workingDiagnosis";
+	//UnderLined Condition
+	public static String PROPERTY_UNDERLINED_CONDITION = MODULE_ID +".underLinedCondition";
 	
 }

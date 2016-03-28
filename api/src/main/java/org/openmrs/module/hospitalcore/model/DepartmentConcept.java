@@ -38,7 +38,7 @@ import org.openmrs.Concept;
  **/
 public class DepartmentConcept implements Serializable {
 	//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
-	public static final int[] TYPES = {1,2,3,4,5}; // 1= Diagnosis, 2=Procedure, 3=Investigation ,4=Symptom,5=Examination
+	public static final int[] TYPES = {1,2,3,4,5,6,7,8,9}; // 1= Diagnosis, 2=Procedure, 3=Investigation ,4=Symptom,5=Examination ,6=UnderLined Condition,7=Signs,8=Differential Diagniosis,9=Working Diagnosis
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer typeConcept;

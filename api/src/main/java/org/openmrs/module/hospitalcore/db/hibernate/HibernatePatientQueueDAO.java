@@ -497,6 +497,135 @@ public class HibernatePatientQueueDAO implements PatientQueueDAO {
 				"obs.concept",Context.getConceptService().getConcept("EXAMINATION")));
 
 		return criteria.list();
+	}
+	
+//UnderLined Condition
+	public List<Obs> getAllUnderlinedCondition(Integer personId)
+			throws DAOException {
+		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Obs.class,"obs");
+		 String toDdate = formatter1.format(new Date());
+		
+		 Date date1 = new Date(); 
+		
+		 Date oldDate = new Date(date1.getTime() - TimeUnit.HOURS.toMillis(24));
+		 String fromDate = formatter1.format(oldDate);
+		
+		 
+		try {
+			criteria.add(Restrictions.lt(
+					"obs.obsDatetime", formatter1.parse(toDdate)));
+			criteria.add(Restrictions.gt(
+					"obs.obsDatetime", formatter1.parse(fromDate)));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error convert date: "+ e.toString());
+			e.printStackTrace();
+		}
+		
+		criteria.add(Restrictions.eq(
+				"obs.personId",personId));
+		criteria.add(Restrictions.eq(
+				"obs.concept", Context.getConceptService().getConcept("UNDERLINED CONDITION")));
+
+		return criteria.list();
+	}
+//signs
+	public List<Obs> getAllSigns(Integer personId) throws DAOException {
+		
+		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Obs.class,"obs");
+		 String toDdate = formatter1.format(new Date());
+		
+		 Date date1 = new Date(); 
+		
+		 Date oldDate = new Date(date1.getTime() - TimeUnit.HOURS.toMillis(24));
+		 String fromDate = formatter1.format(oldDate);
+		
+		 
+		try {
+			criteria.add(Restrictions.lt(
+					"obs.obsDatetime", formatter1.parse(toDdate)));
+			criteria.add(Restrictions.gt(
+					"obs.obsDatetime", formatter1.parse(fromDate)));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error convert date: "+ e.toString());
+			e.printStackTrace();
+		}
+		
+		criteria.add(Restrictions.eq(
+				"obs.personId",personId));
+		criteria.add(Restrictions.eq(
+				"obs.concept", Context.getConceptService().getConcept("SIGNS")));
+
+		return criteria.list();
+	}
+//differential diagnosis
+	public List<Obs> getAllDifferentialDiagnosis(Integer personId)
+			throws DAOException {
+		
+		
+		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Obs.class,"obs");
+		 String toDdate = formatter1.format(new Date());
+		
+		 Date date1 = new Date(); 
+		
+		 Date oldDate = new Date(date1.getTime() - TimeUnit.HOURS.toMillis(24));
+		 String fromDate = formatter1.format(oldDate);
+		
+		 
+		try {
+			criteria.add(Restrictions.lt(
+					"obs.obsDatetime", formatter1.parse(toDdate)));
+			criteria.add(Restrictions.gt(
+					"obs.obsDatetime", formatter1.parse(fromDate)));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error convert date: "+ e.toString());
+			e.printStackTrace();
+		}
+		
+		criteria.add(Restrictions.eq(
+				"obs.personId",personId));
+		criteria.add(Restrictions.eq(
+				"obs.concept", Context.getConceptService().getConcept("DIFFERENTIAL DIAGNOSIS")));
+
+		return criteria.list();
+	}
+//working diagnosis
+	public List<Obs> getAllWorkingDiagnosis(Integer personId)
+			throws DAOException {
+		
+		
+		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Obs.class,"obs");
+		 String toDdate = formatter1.format(new Date());
+		
+		 Date date1 = new Date(); 
+		
+		 Date oldDate = new Date(date1.getTime() - TimeUnit.HOURS.toMillis(24));
+		 String fromDate = formatter1.format(oldDate);
+		
+		 
+		try {
+			criteria.add(Restrictions.lt(
+					"obs.obsDatetime", formatter1.parse(toDdate)));
+			criteria.add(Restrictions.gt(
+					"obs.obsDatetime", formatter1.parse(fromDate)));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error convert date: "+ e.toString());
+			e.printStackTrace();
+		}
+		
+		criteria.add(Restrictions.eq(
+				"obs.personId",personId));
+		criteria.add(Restrictions.eq(
+				"obs.concept", Context.getConceptService().getConcept("WORKING DIAGNOSIS")));
+
+		return criteria.list();
 	}	
 	
 }

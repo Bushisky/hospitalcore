@@ -255,6 +255,34 @@ public class PatientDashboardServiceImpl implements PatientDashboardService {
 		return dao.getQuestion(examination);
 	}
 
+	public List<Concept> searchUnderLinedCondition(String text)
+			throws APIException {
+	
+			ConceptClass cc =  Context.getConceptService().getConceptClassByName(PatientDashboardConstants.CONCEPT_CLASS_NAME_DIAGNOSIS);
+			return dao.searchConceptsByNameAndClass(text, cc);
+		
+	}
+
+	public List<Concept> searchSigns(String text) throws APIException {
+		// TODO Auto-generated method stub
+		ConceptClass cc =  Context.getConceptService().getConceptClassByName(PatientDashboardConstants.CONCEPT_CLASS_NAME_DIAGNOSIS);
+		return dao.searchConceptsByNameAndClass(text, cc);
+	}
+
+	public List<Concept> searchDifferentialDiagnosis(String text)
+			throws APIException {
+		// TODO Auto-generated method stub
+		ConceptClass cc =  Context.getConceptService().getConceptClassByName(PatientDashboardConstants.CONCEPT_CLASS_NAME_DIAGNOSIS);
+		return dao.searchConceptsByNameAndClass(text, cc);
+	}
+
+	public List<Concept> searchWorkingDiagnosis(String text)
+			throws APIException {
+		// TODO Auto-generated method stub
+		ConceptClass cc =  Context.getConceptService().getConceptClassByName(PatientDashboardConstants.CONCEPT_CLASS_NAME_DIAGNOSIS);
+		return dao.searchConceptsByNameAndClass(text, cc);
+	}
+
 	
 }
 

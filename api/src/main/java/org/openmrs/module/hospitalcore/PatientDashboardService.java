@@ -100,6 +100,16 @@ public interface PatientDashboardService {
 	public Examination saveExamination(Examination examination)throws APIException;
 	public List<Examination> getExamination(Encounter encounters)throws APIException;
 	public List<Question> getQuestion(Examination examination)throws APIException;
+	//UnderLined Condition
+	public List<Concept> searchUnderLinedCondition(String text) throws APIException;
+	//Signs
+	public List<Concept> searchSigns(String text)throws APIException;
+	//Differential diagnosis
+	public List<Concept> searchDifferentialDiagnosis(String text)throws APIException;
+	//Working Diagnosis
+	public List<Concept> searchWorkingDiagnosis(String text)throws APIException;
+	
+	
 
 	
 	

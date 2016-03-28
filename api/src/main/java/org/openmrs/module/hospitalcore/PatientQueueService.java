@@ -98,4 +98,14 @@ public interface PatientQueueService extends OpenmrsService {
 	public List<Obs> getAllSymptom(Integer personId) throws APIException;
 	public TriagePatientData updateTriagePatientData(TriagePatientData triagePatientData) throws APIException ;
 	public List<Obs> getAllExamination(Integer personId) throws APIException;
+	
+	//UnderLIned Condition
+	public List<Obs> getAllUnderlinedCondition(Integer personId)  throws APIException;
+	//signs
+	public List<Obs> getAllSigns(Integer personId) throws APIException;
+	//differential diagnosis
+	public List<Obs> getAllDifferentialDiagnosis(Integer personId) throws APIException;
+	
+	//working diagnosis
+	public List<Obs> getAllWorkingDiagnosis(Integer personId) throws APIException;
 }

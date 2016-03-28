@@ -95,5 +95,14 @@ public interface PatientQueueDAO {
 	public List<Obs> getAllSymptom(Integer personId) throws DAOException;
 	public List<Obs> getAllExamination(Integer personId) throws DAOException;
 	public TriagePatientData updateTriagePatientData(TriagePatientData triagePatientData) throws DAOException ;
+	//UnderLined Condition
+	public List<Obs> getAllUnderlinedCondition(Integer personId) throws DAOException;
+	//signs
+	public List<Obs> getAllSigns(Integer personId)throws DAOException;
+	//differential diagnosis
+	public List<Obs> getAllDifferentialDiagnosis(Integer personId)throws DAOException;
+	//working diagnosis
+	public List<Obs> getAllWorkingDiagnosis(Integer personId)throws DAOException;
+	
 }
 

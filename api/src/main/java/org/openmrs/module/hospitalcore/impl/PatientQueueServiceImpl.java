@@ -299,4 +299,26 @@ public class PatientQueueServiceImpl  extends BaseOpenmrsService implements Pati
 		// TODO Auto-generated method stub
 		return dao.getAllExamination(personId);
 	}
+//UnderLined Condition
+	public List<Obs> getAllUnderlinedCondition(Integer personId)
+			throws APIException {
+		return dao.getAllUnderlinedCondition(personId);
+	}
+//signs
+	public List<Obs> getAllSigns(Integer personId) throws APIException {
+		
+		return dao.getAllSigns(personId);
+	}
+//differential diagnosis
+	public List<Obs> getAllDifferentialDiagnosis(Integer personId)
+			throws APIException {
+	
+		return dao.getAllDifferentialDiagnosis(personId);
+	}
+//working diagnosis
+	public List<Obs> getAllWorkingDiagnosis(Integer personId)
+			throws APIException {
+		
+		return dao.getAllWorkingDiagnosis(personId);
+	}
 }
