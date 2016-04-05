@@ -214,7 +214,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
         String[] searchSplit = nameOrIdentifier.split("\\s+");
 
 //        update on the patient search functionality - enhancing the search speed - Issue#reg10
-        String hql = "SELECT DISTINCT p.patient_id,pi.identifier,pn.given_name ,pn.middle_name ,pn.family_name ,ps.gender,ps.birthdate,pse.dead,pse.admitted, pse.person_name_id ,EXTRACT(YEAR FROM (FROM_DAYS(DATEDIFF(NOW(),ps.birthdate)))) age,pn.person_name_id FROM patient p "
+        String hql = "SELECT DISTINCT p.patient_id,pi.identifier,pn.given_name ,pn.middle_name ,pn.family_name ,ps.gender,ps.birthdate,pse.dead,pse.admitted, pse.person_name_id ,EXTRACT(YEAR FROM (FROM_DAYS(DATEDIFF(NOW(),ps.birthdate)))) age FROM patient p "
                 + "INNER JOIN person ps ON p.patient_id = ps.person_id "
                 + "INNER JOIN patient_identifier pi ON p.patient_id = pi.patient_id "
                 + "INNER JOIN person_name pn ON p.patient_id = pn.person_id "
@@ -222,15 +222,6 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                 + "INNER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id "
                 + "INNER JOIN patient_search pse ON p.patient_id = pse.patient_id "
                 + "INNER JOIN encounter en ON p.patient_id = en.patient_id "
-                + "INNER JOIN encounter e ON e.patient_id = p.patient_id "
-                + "INNER JOIN person_attribute paMaritalStatus ON p.patient_id= paMaritalStatus.person_id "
-                + "INNER JOIN person_attribute_type patMaritalStatus ON paMaritalStatus.person_attribute_type_id = patMaritalStatus.person_attribute_type_id  "
-                + "INNER JOIN person_attribute paNationalId ON p.patient_id= paNationalId.person_id "
-                + "INNER JOIN person_attribute_type patNationalId ON paNationalId.person_attribute_type_id = patNationalId.person_attribute_type_id  "
-                + "INNER JOIN person_attribute paPhoneNumber ON p.patient_id= paPhoneNumber.person_id "
-                + "INNER JOIN person_attribute_type patPhoneNumber ON paPhoneNumber.person_attribute_type_id = patPhoneNumber.person_attribute_type_id  "
-                + "INNER JOIN person_attribute paFileNumber ON p.patient_id= paFileNumber.person_id "
-                + "INNER JOIN person_attribute_type patFileNumber ON paFileNumber.person_attribute_type_id = patFileNumber.person_attribute_type_id "
                 + "WHERE (pi.identifier like '%"
                 + nameOrIdentifier
                 + "%' ";
@@ -290,28 +281,28 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
 
         //process range day of visit
         if (lastVisit > 0) {
-            hql += " AND (DATEDIFF(NOW(), e.date_created) <= " + lastVisit + ")";
+            hql += " AND (DATEDIFF(NOW(), en.date_created) <= " + lastVisit + ")";
 
         }
 
         //process marital status
         if (StringUtils.isNotBlank(maritalStatus)) {
-            hql += "AND (patMaritalStatus.name LIKE '%Marital Status%' " + "AND paMaritalStatus.value = '" + maritalStatus + "') ";
+            hql += "AND (pat.name LIKE '%Marital Status%' " + "AND pa.value = '" + maritalStatus + "') ";
         }
 
         //process national id
         if (StringUtils.isNotBlank(nationalId)) {
-            hql += "AND (patNationalId.name LIKE '%National ID%' " + "AND paNationalId.value = '" + nationalId + "') ";
+            hql += "AND (pat.name LIKE '%National ID%' " + "AND pa.value = '" + nationalId + "') ";
         }
 
         //process phone number
         if (StringUtils.isNotBlank(phoneNumber)) {
-            hql += "AND (patPhoneNumber.name LIKE '%Phone Number%' " + "AND paPhoneNumber.value = '" + phoneNumber + "') ";
+            hql += "AND (pat.name LIKE '%Phone Number%' " + "AND pa.value = '" + phoneNumber + "') ";
         }
 
         //process patient file number
         if (StringUtils.isNotBlank(fileNumber)) {
-            hql += "AND (patFileNumber.name LIKE '%File Number%' " + "AND paFileNumber.value = '" + fileNumber + "') ";
+            hql += "AND (pat.name LIKE '%File Number%' " + "AND pa.value = '" + fileNumber + "') ";
         }
         hql += " ORDER BY p.patient_id ASC LIMIT 0, 50";
 
