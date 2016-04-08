@@ -24,6 +24,7 @@
 		<property name="pulsRate" column="pulse_rate" />
 		<property name="bloodGroup" column="blood_group" />
 		<property name="lastMenstrualDate" column="last_menstrual" />
+        <property name="oxygenSaturation" column="oxygen_saturation" />
 		<property name="rhesusFactor" column="rhesus_factor" />
 		<property name="pitct" column="pitct" />
 		<property name="createdOn" column="created_on" />
