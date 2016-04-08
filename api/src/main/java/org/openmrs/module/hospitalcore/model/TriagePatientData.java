@@ -70,6 +70,9 @@ public class TriagePatientData implements Serializable {
 	private String pitct;
 	private Date createdOn;
 	private Integer encounterOpd;
+    private Integer oxygenSaturation;
+
+
 	
 	
 	public Integer getEncounterOpd() {
@@ -200,6 +203,12 @@ public class TriagePatientData implements Serializable {
 		this.BMI = BMI;
 	}
 
-	
 
+    public Integer getOxygenSaturation() {
+        return oxygenSaturation;
+    }
+
+    public void setOxygenSaturation(Integer oxygenSaturation) {
+        this.oxygenSaturation = oxygenSaturation;
+    }
 }
