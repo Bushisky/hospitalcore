@@ -132,6 +132,8 @@
 		Department.hbm.xml
 		DepartmentConcept.hbm.xml
 		RadiologyDepartment.hbm.xml
+		RadiologyTest.hbm.xml
+		RadiologyForm.hbm.xml
 		CoreForm.hbm.xml
 		PatientSearch.hbm.xml
 		DmsOpdUnit.hbm.xml
