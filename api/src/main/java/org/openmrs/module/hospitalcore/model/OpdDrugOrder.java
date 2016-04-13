@@ -39,11 +39,28 @@ public class OpdDrugOrder {
 	private Concept frequency;
 	private Integer noOfDays;
 	private String comments;
+	private String dosage;
+	private Concept dosageUnit;
 	private User creator;
 	private Date createdOn;
 	private int orderStatus; //0=drug order from opd not yet processed,1=drug order from opd processed 
 	private int cancelStatus; //0=not yet canceled,1=canceled
 	private String referralWardName;
+	public String getDosage() {
+		return dosage;
+	}
+	public void setDosage(String dosage) {
+		this.dosage = dosage;
+	}
+
+	public Concept getDosageUnit() {
+		return dosageUnit;
+	}
+
+	public void setDosageUnit(Concept dosageUnit) {
+		this.dosageUnit = dosageUnit;
+	}
+
 	public Integer getOpdDrugOrderId() {
 		return opdDrugOrderId;
 	}

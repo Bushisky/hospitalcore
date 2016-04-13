@@ -12,4 +12,38 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet author="Ngari" id="add-dosage">
+        <comment>Adding dosage column</comment>
+        <addColumn tableName="opd_drug_order">
+            <column name="dosage" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="Ngari" id="add-dosageunit">
+        <comment>Adding dosage unit column</comment>
+        <addColumn tableName="opd_drug_order">
+            <column name="dosage_unit" type="int(11)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+
+    <changeSet author="ngarivictor" id="createTable-prescription_drug_unit">
+        <createTable
+                tableName="prescription_drug_unit">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="createdOn" type="varchar(255)"/>
+            <column name="createdBy" type="varchar(255)"/>
+
+
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

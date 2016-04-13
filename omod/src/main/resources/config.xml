@@ -168,6 +168,7 @@
 		Question.hbm.xml
 		Answer.hbm.xml
 		InventoryStoreRoleRelation.hbm.xml
+		PrescriptionDrugUnit.hbm.xml
     </mappingFiles>
 </module>
 
