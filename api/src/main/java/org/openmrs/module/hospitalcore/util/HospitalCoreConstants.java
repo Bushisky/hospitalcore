@@ -47,5 +47,6 @@ public class HospitalCoreConstants {
 	
 	public static final Integer LABTEST_STATUS_NEW = 0;
 	public static final Integer LABTEST_STATUS_ACCEPTED = 1;
-	public static final Integer LABTEST_STATUS_PRINTED = 2;	
+	public static final Integer LABTEST_STATUS_PRINTED = 2;
+	public static final Integer NEXT_OF_KIN_PERSON_ATTRIBUTE_ID = 8;
 }
