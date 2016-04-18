@@ -58,6 +58,7 @@ import org.openmrs.module.hospitalcore.model.IpdPatientAdmitted;
 import org.openmrs.module.hospitalcore.model.OpdTestOrder;
 import org.openmrs.module.hospitalcore.model.PatientSearch;
 import org.openmrs.module.hospitalcore.util.DateUtils;
+import org.openmrs.module.hospitalcore.util.HospitalCoreConstants;
 
 public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
 
@@ -163,7 +164,7 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
             hql += " AND ps.gender = '" + gender + "' ";
         }
         if (StringUtils.isNotBlank(relativeName)) {
-            hql += " AND pat.name = 'Father/Husband Name' AND pa.value like '" + relativeName + "' ";
+            hql += " AND pat.person_attribute_type_id = " + HospitalCoreConstants.NEXT_OF_KIN_PERSON_ATTRIBUTE_ID +  " AND pa.value like '%" + relativeName + "%' ";
         }
         if (StringUtils.isNotBlank(date)) {
             String startDate = DateUtils.getDateFromRange(date, -rangeDay) + " 00:00:00";
