@@ -28,5 +28,9 @@
 		</set>
 		<many-to-one name="encounter" column="encounter_id" class="org.openmrs.Encounter"
 			foreign-key="fk_indoorpatientservicebill_encounter" />
+
+		<property name="comment" column="comment" />
+		<property name="waiverAmount" column="waiver_amount" />
+		<property name="paymentMode" column="payment_mode" />
 	</class>
 </hibernate-mapping>

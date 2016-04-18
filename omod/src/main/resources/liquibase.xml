@@ -39,6 +39,7 @@
             </column>
         </addColumn>
     </changeSet>
+<<<<<<< HEAD
 
 
     <changeSet author="ngarivictor" id="createTable-prescription_drug_unit">
@@ -56,4 +57,7 @@
         </createTable>
     </changeSet>
 
+=======
+    
+>>>>>>> 7d01536eb1b7ba9c00c0b91a5e0297742be3dc3a
 </databaseChangeLog>

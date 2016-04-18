@@ -7,3 +7,4 @@
 .idea/
 api/hospitalcore-api.iml
 omod/hospitalcore-omod.iml
+**/hospitalcore.iml

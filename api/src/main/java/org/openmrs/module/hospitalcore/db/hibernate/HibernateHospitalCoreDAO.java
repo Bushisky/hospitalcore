@@ -331,7 +331,6 @@ public class HibernateHospitalCoreDAO implements HospitalCoreDAO {
                     patient.setGender((String) obss[5]);
                     patient.setBirthdate((Date) obss[6]);
                     //set the death status
-                    System.out.println("Dead: " + obss[7]);
                     if (obss[7] != null) {
                         if (obss[7].toString().equals("1")) {
                             patient.setDead(true);
