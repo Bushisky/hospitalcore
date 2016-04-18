@@ -39,25 +39,4 @@
             </column>
         </addColumn>
     </changeSet>
-<<<<<<< HEAD
-
-
-    <changeSet author="ngarivictor" id="createTable-prescription_drug_unit">
-        <createTable
-                tableName="prescription_drug_unit">
-            <column name="id" type="int">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="varchar(255)"/>
-            <column name="description" type="varchar(255)"/>
-            <column name="createdOn" type="varchar(255)"/>
-            <column name="createdBy" type="varchar(255)"/>
-
-
-        </createTable>
-    </changeSet>
-
-=======
-    
->>>>>>> 7d01536eb1b7ba9c00c0b91a5e0297742be3dc3a
 </databaseChangeLog>
