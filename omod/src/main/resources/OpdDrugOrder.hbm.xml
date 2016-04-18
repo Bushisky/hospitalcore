@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+ <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
@@ -19,6 +19,7 @@
 		<many-to-one name="frequency" column="frequency_concept_id" class="org.openmrs.Concept" />
 		<property name="noOfDays" column="no_of_days" />
 		<property name="comments" column="comments" />
+		<property name="dosage" column="dosage" />
 		<many-to-one name="creator" column="created_by" class="org.openmrs.User" />
 		<property name="createdOn" type="java.util.Date" column="created_on"
 			not-null="true" length="19" />
@@ -28,6 +29,6 @@
 			not-null="true" />
 	    <property name="referralWardName" column="referral_ward_name" length="100"
 			not-null="true" />
-
+		<many-to-one name="dosageUnit" column="dosage_unit" class="org.openmrs.Concept" />
 	</class>
 </hibernate-mapping>
