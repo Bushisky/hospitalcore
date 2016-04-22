@@ -36,6 +36,7 @@ public class PatientDashboardConstants {
 	
 	public static String PROPERTY_IPDWARD = MODULE_ID + ".IPDRootConcept";
 	public static String PROPERTY_HOSPITAL = MODULE_ID + ".externalHospitalConcept";
+    public static String PROPERTY_HISTORY_OF_PRESENT_ILLNESS = MODULE_ID + "historyOfPresentIllness";
 	public static String PROPERTY_SYMPTOM = MODULE_ID + ".symptomConcept";
 	public static String PROPERTY_EXAMINATION = MODULE_ID + ".examinationConcept";
 	public static String PROPERTY_PROVISIONAL_DIAGNOSIS = MODULE_ID + ".provisionalDiagnosisConcept";
