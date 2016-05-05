@@ -39,6 +39,7 @@ public class PatientDashboardConstants {
     public static String PROPERTY_HISTORY_OF_PRESENT_ILLNESS = MODULE_ID + ".historyOfPresentIllness";
 	public static String PROPERTY_SYMPTOM = MODULE_ID + ".symptomConcept";
 	public static String PROPERTY_EXAMINATION = MODULE_ID + ".examinationConcept";
+	public static String PROPERTY_PHYSICAL_EXAMINATION = MODULE_ID + ".physicalexaminationConcept";
 	public static String PROPERTY_PROVISIONAL_DIAGNOSIS = MODULE_ID + ".provisionalDiagnosisConcept";
 	public static String PROPERTY_POST_FOR_PROCEDURE = MODULE_ID + ".postForProcedureConcept";
 	//ghanshyam 1-june-2013 New Requirement #1633 User must be able to send investigation orders from dashboard to billing
