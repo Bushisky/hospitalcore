@@ -25,6 +25,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.openmrs.Patient;
+import org.openmrs.User;
 import org.openmrs.module.hospitalcore.util.PatientUtils;
 
 public class InventoryStoreDrugPatient implements  Serializable {
@@ -40,6 +41,18 @@ public class InventoryStoreDrugPatient implements  Serializable {
 	 private String identifier;
 	 private Integer values;
 	 private Integer statuss;
+
+	private User prescriber;
+
+	public User getPrescriber() {
+		return prescriber;
+	}
+
+	public void setPrescriber(User prescriber) {
+		this.prescriber = prescriber;
+	}
+
+
 	 public Integer getValues() {
 		return values;
 	}
