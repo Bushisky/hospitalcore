@@ -56,9 +56,6 @@ public class IndoorPatientServiceBill implements Serializable {
     private Encounter encounter;
 
     private Integer selectedCategory;
-    private BigDecimal waiverAmount;
-    private String comment;
-    private String paymentMode;
 
 
     public Integer getIndoorPatientServiceBillId() {
@@ -145,27 +142,4 @@ public class IndoorPatientServiceBill implements Serializable {
         this.selectedCategory = selectedCategory;
     }
 
-    public BigDecimal getWaiverAmount() {
-        return waiverAmount;
-    }
-
-    public void setWaiverAmount(BigDecimal waiverAmount) {
-        this.waiverAmount = waiverAmount;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getPaymentMode() {
-        return paymentMode;
-    }
-
-    public void setPaymentMode(String paymentMode) {
-        this.paymentMode = paymentMode;
-    }
 }

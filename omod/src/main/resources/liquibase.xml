@@ -41,18 +41,18 @@
     </changeSet>
 
 
-    <changeSet author="ngarivictor" id="add-comment">
+    <changeSet author="ngarivictor" id="add-drug-comment">
         <comment>Adding comment column</comment>
-        <addColumn tableName="indoor_patient_service_bill">
+        <addColumn tableName="inventory_store_drug_patient">
             <column name="comment" type="varchar(225)">
                 <constraints nullable="true"/>
             </column>
         </addColumn>
     </changeSet>
 
-    <changeSet author="ngarivictor" id="add-waiver-amount">
+    <changeSet author="ngarivictor" id="add-drug-waiver-amount">
         <comment>Adding waiver-amount column</comment>
-        <addColumn tableName="indoor_patient_service_bill">
+        <addColumn tableName="inventory_store_drug_patient">
             <column name="waiver_amount" type="decimal(19,2)">
                 <constraints nullable="true"/>
             </column>
@@ -82,5 +82,4 @@
                 defaultValue="0"
                 tableName="inventory_store_drug_patient"/>
     </changeSet>
-
 </databaseChangeLog>
