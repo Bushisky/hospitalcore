@@ -68,4 +68,19 @@
         </addColumn>
     </changeSet>
 
+    <changeSet author="Dennys" id="add-prescriber">
+        <comment>Adding OPD Prescriber</comment>
+        <addColumn tableName="inventory_store_drug_patient">
+            <column name="prescriber" type="int(11)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <addDefaultValue
+                columnDataType="int"
+                columnName="prescriber"
+                defaultValue="0"
+                tableName="inventory_store_drug_patient"/>
+    </changeSet>
+
 </databaseChangeLog>
