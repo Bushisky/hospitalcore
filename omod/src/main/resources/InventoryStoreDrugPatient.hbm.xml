@@ -13,6 +13,7 @@
                      column="store_id" cascade="none" lazy="false"/>
         <many-to-one name="patient" class="org.openmrs.Patient"
                      column="patient_id" cascade="none" lazy="false"/>
+        <many-to-one name="prescriber" class="org.openmrs.User" column="prescriber"  />
         <property name="name" column="name"/>
         <property name="prescription" column="prescription"/>
         <property name="identifier" column="identifier"/>

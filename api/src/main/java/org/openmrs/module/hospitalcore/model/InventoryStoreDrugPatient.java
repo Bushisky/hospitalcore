@@ -21,6 +21,7 @@
 package org.openmrs.module.hospitalcore.model;
 
 import org.openmrs.Patient;
+import org.openmrs.User;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -39,6 +40,15 @@ public class InventoryStoreDrugPatient implements Serializable {
     private String identifier;
     private Integer values;
     private Integer statuss;
+    private User prescriber;
+
+    public User getPrescriber() {
+        return prescriber;
+    }
+
+    public void setPrescriber(User prescriber) {
+        this.prescriber = prescriber;
+    }
 
     //Add waiver and comment processing - needs review
     private BigDecimal waiverAmount;
