@@ -24,9 +24,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.openmrs.Patient;
+
 public class TriagePatientData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private Patient patient;
 	private Integer id;
 	private TriagePatientQueueLog triageLogId;
 	private BigDecimal weight;
@@ -35,6 +38,12 @@ public class TriagePatientData implements Serializable {
 	private BigDecimal mua;
 	private BigDecimal chest;
 	private BigDecimal abdominal;
+	public Patient getPatient(){
+		return patient;
+	}
+	public void setPatient(Patient patient){
+		this.patient = patient;
+	}
 	public BigDecimal getMua() {
 		return mua;
 	}

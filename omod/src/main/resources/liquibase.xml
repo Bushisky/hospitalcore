@@ -82,4 +82,18 @@
                 defaultValue="0"
                 tableName="inventory_store_drug_patient"/>
     </changeSet>
+     <changeSet author="Kimani" id="patient-id">
+        <comment>Getting Patient Data</comment>
+        <addColumn tableName="triage_patient_data">
+            <column name="patient_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <addDefaultValue
+                columnDataType="int"
+                columnName="patient_id"
+                defaultValue="0"
+                tableName="triage_patient_data"/>
+    </changeSet>
 </databaseChangeLog>
