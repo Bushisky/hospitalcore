@@ -29,5 +29,6 @@
 		<property name="pitct" column="pitct" />
 		<property name="createdOn" column="created_on" />
 		<property name="encounterOpd" column="encounter_opd" />
+		<many-to-one name="patient" column="patient_id"  class="org.openmrs.Patient"/>
 	</class>
 </hibernate-mapping>
