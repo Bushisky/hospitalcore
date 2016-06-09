@@ -48,8 +48,10 @@ import org.openmrs.Order;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.DAOException;
+import org.openmrs.module.hospitalcore.BillingService;
 import org.openmrs.module.hospitalcore.db.PatientDashboardDAO;
 import org.openmrs.module.hospitalcore.model.Answer;
+import org.openmrs.module.hospitalcore.model.BillableService;
 import org.openmrs.module.hospitalcore.model.Department;
 import org.openmrs.module.hospitalcore.model.DepartmentConcept;
 import org.openmrs.module.hospitalcore.model.Examination;
@@ -321,17 +323,23 @@ public class HibernatePatientDashboardDAO implements PatientDashboardDAO {
 	public List<Concept> searchInvestigation(String text)throws DAOException {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Concept.class);
+		List<BillableService> allBillableServices = Context.getService(BillingService.class).getAllServices();
+		List<Integer> billableServiceConceptIds = new ArrayList<Integer>();
+		for (BillableService service : allBillableServices) {
+			billableServiceConceptIds.add(service.getConceptId());
+		}
 		ConceptClass cct =  Context.getConceptService().getConceptClassByName("Test");
 		ConceptClass ccl =  Context.getConceptService().getConceptClassByName("LabSet");
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		criteria.add(Expression.eq("retired", false));
+		criteria.add(Restrictions.eq("retired", false));
+		criteria.add(Restrictions.in("conceptId", billableServiceConceptIds));
 		Criterion lhs= Restrictions.eq("conceptClass", cct);
 		Criterion rhs= Restrictions.eq("conceptClass", ccl);
 		LogicalExpression orExp = Restrictions.or(lhs, rhs);
 		criteria.add( orExp );
 		if (StringUtils.isNotBlank(text)) {
 			criteria.createAlias("names", "names");
-			criteria.add(Expression
+			criteria.add(Restrictions
 					.like("names.name", text, MatchMode.ANYWHERE));
 		}
 		return criteria.list();
