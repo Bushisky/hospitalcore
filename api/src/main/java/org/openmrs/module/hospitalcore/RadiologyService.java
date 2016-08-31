@@ -335,4 +335,6 @@ public interface RadiologyService extends OpenmrsService {
 	 * @return
 	 */
 	public List<RadiologyTemplate> getRadiologyTemplates(Concept concept);
+
+	public List<RadiologyTest> getCompletedRadiologyTestsByPatient(Patient patient);
 }

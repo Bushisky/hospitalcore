@@ -430,4 +430,9 @@ public class RadiologyServiceImpl extends BaseOpenmrsService implements
 	public List<RadiologyTemplate> getRadiologyTemplates(Concept concept) {
 		return dao.getRadiologyTemplates(concept);
 	}
+
+	public List<RadiologyTest> getCompletedRadiologyTestsByPatient(Patient patient) {
+		// TODO Auto-generated method stub
+		return dao.getCompletedRadiologyTestsByPatient(patient);
+	}
 }
