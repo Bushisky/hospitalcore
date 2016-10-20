@@ -415,4 +415,12 @@ public class HibernateRadiologyDAO implements RadiologyDAO {
 		testCriteria.add(Restrictions.eq("conceptId", concept.getConceptId()));
 		return criteria.list();
 	}
+
+	public List<RadiologyTest> getCompletedRadiologyTestsByPatient(Patient patient) {
+		// TODO Auto-generated method stub
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				RadiologyTest.class);
+		criteria.add(Restrictions.eq("patient", patient));
+		return criteria.list();
+	}
 }
