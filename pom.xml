@@ -108,6 +108,9 @@
 					<version>1.0-m5</version>
 					<configuration>
 						<noDeploy>true</noDeploy>
+						<flowInitContext>
+							<developBranchName>qa</developBranchName>
+						</flowInitContext>
 					</configuration>
 				</plugin>
 			</plugins>
